@@ -4,15 +4,15 @@
     <!-- 구글 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- jquery -->
-    <script src="../js/common/jquery-3.6.0.js"></script>
+    <script src="/resources/js/common/jquery-3.6.0.js"></script>
     <!-- 기본 CSS -->
-    <link rel="stylesheet" href="../css/common/default.css" />
+    <link rel="stylesheet" href="/resources/css/common/default.css" />
     <!-- 기본 js -->
-    <script src="/js/default.js"></script>
+    <script src="/resources/js/common/default.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="/summernote/summernote-lite.js"></script>
-	<script src="/summernote/lang/summernote-ko-KR.js"></script>
-	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+    <script src="/resources/summernote/summernote-lite.js"></script>
+	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 	<header>
       <div class="site-logo">
         <a href="/">Taeyeon`S WORLD</a>

@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<h1>MVC Web Project 메인페이지</h1>
-		<img src="../img/common/잠만보짤.jpg">
+		<img src="/resources/img/common/잠만보.jpg">
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

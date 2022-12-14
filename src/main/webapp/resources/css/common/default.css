@@ -1,23 +1,23 @@
 /* 사용할 font 선언 */
 @font-face {
   font-family: ns-thin;
-  src: url(../font/NotoSansKR-Thin.otf);
+  src: url(/resources/font/NotoSansKR-Thin.otf);
 }
 @font-face {
   font-family: ns-light;
-  src: url(../font/NotoSansKR-Light.otf);
+  src: url(/resources/font/NotoSansKR-Light.otf);
 }
 @font-face {
   font-family: ns-m;
-  src: url(../font/NotoSansKR-Medium.otf);
+  src: url(/resources/font/NotoSansKR-Medium.otf);
 }
 @font-face {
   font-family: ns-bold;
-  src: url(../font/NotoSansKR-Bold.otf);
+  src: url(/resources/font/NotoSansKR-Bold.otf);
 }
 @font-face {
   font-family: ns-black;
-  src: url(../font/NotoSansKR-Black.otf);
+  src: url(/resources/font/NotoSansKR-Black.otf);
 }
 /* 
     사이트 사용 색상 
