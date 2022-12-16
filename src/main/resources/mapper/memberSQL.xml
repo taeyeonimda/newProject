@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	
-	
-	<!-- 로그인용 -->
+	<!-- 로그인/아이디중복체크 -->
 	<select id="selectOneMember" parameterType="m" resultType="m">
 	select
 		member_no as memberNo,
@@ -16,6 +14,22 @@
 		enroll_date as enrollDate
 	from member_tbl
 	where member_id = #{memberId}
-	and member_pw = #{memberPw}
+	<if test="memberPw != null">
+		and member_pw = #{memberPw}
+	</if>
 	</select>
+	
+	<insert id="insertMember" parameterType="m">
+		insert into member_tbl
+		values(
+			member_seq.nextval,
+			#{memberId},
+			#{memberPw},
+			#{memberName},
+			#{memberPhone},
+			#{memberAddr},
+			3,
+			to_char(sysdate,'yyyy-mm-dd')
+		)
+	</insert>
 </mapper>

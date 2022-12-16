@@ -16,4 +16,9 @@ public class MemberService {
 		Member mem = dao.selectOneMember(m);
 		return mem;
 	}
+
+	public int insertMember(Member m) {
+		int result = dao.insertMember(m);
+		return result;
+	}
 }
