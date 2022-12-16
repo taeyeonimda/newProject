@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이홈페이지</title>
-<link rel="icon" href="../img/common/잠만보3232.jpg">
+<link rel="icon" href="/resources/img/common/잠만보32.jpg">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>

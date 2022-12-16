@@ -2,4 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 	
+	
+	<!-- 로그인용 -->
+	<select id="selectOneMember" parameterType="m" resultType="m">
+	select
+		member_no as memberNo,
+		member_id as memberId,
+		member_pw as memberPw,
+		member_name as memberName,
+		member_phone as memberPhone,
+		member_addr as memberAddr,
+		member_level as memberLevel,
+		enroll_date as enrollDate
+	from member_tbl
+	where member_id = #{memberId}
+	and member_pw = #{memberPw}
+	</select>
 </mapper>

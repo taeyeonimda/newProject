@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	  
     <!-- 구글 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- jquery -->
@@ -35,42 +35,91 @@
       </nav>
       <div class="header-link">
       <!-- m이 null일때 -->
-        <button class="btn bc11 modal-open-btn" target="#login-modal">SIGN IN</button>
-        <a class="btn bc11" href="/signupFrm.do">SIGN UP</a>
-       <!-- null이 아닐때 -->
-        <a class="btn bc11" href="/myPage2.do">이름보여주기</a>
-        <a class="btn bc11" href="/logout.do">LOGOUT</a>
-       <!-- null이아닐때 여기까지 -->
+      <c:choose>
+	      <c:when test="${empty sessionScope.m}">
+	        <button class="btn bc11 modal-open-btn" target="#login-modal">SIGN IN</button>
+       		<a class="btn bc11" href="/signupFrm.do">SIGN UP</a>
+	      </c:when>
+	      <c:otherwise>
+	      	<a class="btn bc11" href="/myPage2.do">${sessionScope.m.memberName }님 환영합니다.</a>
+          	<a class="btn bc11" href="/logout.do">LOGOUT</a>
+	      </c:otherwise>
+      </c:choose>
       </div>
     </header>
     
     <!-- 로그인모달 -->
     <!-- m이 널일떄 -->
-    <div id="login-modal" class="modal-bg">
-      <div class="modal-wrap">
-        <div class="modal-head">
-          <h2>SIGN IN</h2>
-          <span class="material-icons close-icon modal-close">close</span>
-        </div>
-        <form action="/signin.do" method="post">
-	        <div class="modal-content">
-	          <div class="input-box">
-	          	<label for="signId">아이디</label>
-	          	<input type="text" name="signId" id="signId" class="input-form" placeholder="아이디입력">
-	          </div>
-	          <div class="input-box">
-	          	<label for="signPw">비밀번호</label>
-	          	<input type="password" name="signPw" id="signPw" class="input-form" placeholder="비밀번호입력">
-	          </div>
-	          <div class="input-box link-box">
-	          	<a href="/findIdFrm.do">아이디 찾기</a>
-	          	<a href="/findPwFrm.do">비밀번호 찾기</a>
-	          </div>
-	        </div>
-	        <div class="modal-foot">
-	          <button type="submit" class="btn bc11">로그인</button>
-	          <button type="button" class="btn bc1 modal-close">취소</button>
-	        </div>
-        </form>
-      </div>      
-    </div>
+    <c:choose>
+	      <c:when test="${empty sessionScope.m}">
+	          <div id="login-modal" class="modal-bg">
+		      	<div class="modal-wrap">
+			        <div class="modal-head">
+			          <h2>SIGN IN</h2>
+			          <span class="material-icons close-icon modal-close">close</span>
+			        </div>
+		        <form action="/signin.do" method="post">
+			        <div class="modal-content">
+			          <div class="input-box">
+			          	<label for="signId">아이디</label>
+			          	<input type="text" name="memberId" id="signId" class="input-form" placeholder="아이디입력">
+			          </div>
+			          <div class="input-box">
+			          	<label for="signPw">비밀번호</label>
+			          	<input type="password" name="memberPw" id="signPw" class="input-form" placeholder="비밀번호입력">
+			          </div>
+			          <div class="input-box link-box">
+			          	<a href="/findIdFrm.do">아이디 찾기</a>
+			          	<a href="/findPwFrm.do">비밀번호 찾기</a>
+			          </div>
+			        </div>
+			        <div class="modal-foot">
+			          <button type="button" class="btn bc11 loginBtn">로그인</button>
+			          <button type="button" class="btn bc1 modal-close">취소</button>
+			        </div>
+		        </form>
+				</div>      
+    		 </div>
+	      </c:when>
+      </c:choose>
+ 
+    
+    <script>
+    $(".loginBtn").on("click",function(){
+    	loginAjax();
+    });
+    $("#signPw").on("keyup",function(e){
+    	  if (e.keyCode === 13) {
+    		  loginAjax();
+    	  }
+    });
+    
+    function loginAjax(){
+    	const memberId = $("[name=memberId]").val();
+    	const memberPw = $("[name=memberPw]").val();
+    	 $.ajax({
+    	    	url: "/signIn.do",
+    	    	data: {
+    	    		memberId:memberId,
+    	    		memberPw:memberPw},
+    	    	success : function(data){
+    	    		if(data==1){
+    	    			alert("로그인 성공");
+    	    			location.href="/";
+    	    		}else if(data==3){
+    	    			alert("로그인 권한이 없습니다.");
+    	    			location.href="/";
+    	    		}else{
+    	    			alert("아이디 혹은 비밀번호를 확인해주세요.");
+    	    		}
+    	    	},
+    	    	error : function(data){
+    	    		alert("에러가 발생하였습니다. 다시 시도해주세요.");
+    	    		
+    	    	}
+    	    	
+    	    })	
+    }
+   
+    
+    </script>
