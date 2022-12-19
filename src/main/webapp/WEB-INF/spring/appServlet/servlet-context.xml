@@ -49,9 +49,16 @@
 		<beans:property name="maxUploadSize" value="10485760"/>
 	</beans:bean>
 	
+	<!-- AOP 어노테이션 활성화 -->
+	<aop:aspectj-autoproxy>
+	</aop:aspectj-autoproxy>
+	
+	
 	<context:component-scan base-package="common" />
 	<context:component-scan base-package="com.web.project" />
 	<context:component-scan base-package="com.web.member" />
+	
+	
 	
 	
 </beans:beans>
