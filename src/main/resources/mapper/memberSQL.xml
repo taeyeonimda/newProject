@@ -32,4 +32,24 @@
 			to_char(sysdate,'yyyy-mm-dd')
 		)
 	</insert>
+	
+	<select id ="allMembmerList" parameterType="map" resultType="m">
+			select * from
+		(select rownum as rnum,m.* from
+		(select  
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			member_phone as memberPhone,
+			member_addr as memberAddr,
+			member_level as memberLevel,
+			enroll_date as enrollDate
+		from member_tbl order by 1 desc)m)
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		select count(*) from member_tbl
+	</select>
 </mapper>

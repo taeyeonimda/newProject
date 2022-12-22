@@ -41,7 +41,7 @@
        		<a class="btn bc11" href="/signupFrm.do">SIGN UP</a>
 	      </c:when>
 	      <c:otherwise>
-	      	<a class="btn bc11" href="/myPage2.do">${sessionScope.m.memberName }님 환영합니다.</a>
+	      	<a class="btn bc11" href="/myPage.do">${sessionScope.m.memberName }님 환영합니다.</a>
           	<a class="btn bc11" href="/logout.do">LOGOUT</a>
 	      </c:otherwise>
       </c:choose>

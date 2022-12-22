@@ -4,11 +4,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.member.model.service.MemberService;
 import com.web.member.model.vo.Member;
+import com.web.member.model.vo.MemberPageData;
 
 @Controller
 public class MemberController {
@@ -22,6 +24,23 @@ public class MemberController {
 		return "member/signUpFrm";
 	}
 	
+	//마이페이지로 이동
+	@RequestMapping(value="/myPage.do")
+	public String myPageFrm() {
+			return "member/myPage";
+	}
+	//어드민페이지
+	@RequestMapping(value="/adminPage.do")
+	public String adminPage(int reqPage, Model model) {
+		MemberPageData mpd = service.getAllMembers(reqPage);
+		model.addAttribute("list",mpd.getList());
+		model.addAttribute("pageNavi",mpd.getPageNavi());
+		model.addAttribute("numPerPage",mpd.getNumPerPage());
+		model.addAttribute("reqPage",mpd.getReqPage());
+		return "member/adminPage";
+	}
+		
+		
 	//로그인
 	@ResponseBody
 	@RequestMapping(value="/signIn.do")
