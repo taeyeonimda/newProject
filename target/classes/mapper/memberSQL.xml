@@ -52,4 +52,11 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from member_tbl
 	</select>
+	
+	<update id="changeLevel" parameterType="m">
+		update member_tbl
+		set
+			member_level = #{memberLevel}
+		where member_no = ${memberNo}
+	</update>
 </mapper>

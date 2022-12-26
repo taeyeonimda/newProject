@@ -35,4 +35,9 @@ public class MemberDao {
 		int totalCount = sqlSession.selectOne("member.totalCount");
 		return totalCount;
 	}
+
+	public int changeLevel(Member m) {
+		int result = sqlSession.update("member.changeLevel",m);
+		return result;
+	}
 }

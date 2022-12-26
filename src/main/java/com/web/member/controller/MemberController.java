@@ -87,4 +87,15 @@ public class MemberController {
 			return "0";
 		}
 	}
+	
+	//운영자페이지에서 멤버등급 변경
+	@RequestMapping(value="/changeLevel")
+	public String changeLevel(Member m) {
+		int result = service.changeLevel(m);
+		if(result>0) {
+			return "redirect:/adminPage.do?reqPage=1";
+		}else {
+			return "redirect:/adminPage.do?reqPage=1";
+		}
+	}
 }

@@ -89,4 +89,9 @@ public class MemberService {
 				return mpd;
 
 	}
+
+	public int changeLevel(Member m) {
+		int result = dao.changeLevel(m);
+		return result;
+	}
 }
