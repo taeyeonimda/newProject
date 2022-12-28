@@ -40,4 +40,9 @@ public class MemberDao {
 		int result = sqlSession.update("member.changeLevel",m);
 		return result;
 	}
+
+	public Member findId(Member m) {
+		Member member = sqlSession.selectOne("member.selectFindId",m);
+		return member;
+	}
 }

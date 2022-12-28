@@ -59,4 +59,12 @@
 			member_level = #{memberLevel}
 		where member_no = ${memberNo}
 	</update>
+	
+	<select id="selectFindId" parameterType="m" resultType="m">
+		select
+			member_id as memberId
+		from member_tbl
+		where member_name = #{memberName}
+		and member_phone = #{memberPhone}
+	</select>
 </mapper>

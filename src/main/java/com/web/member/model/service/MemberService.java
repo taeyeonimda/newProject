@@ -2,6 +2,7 @@ package com.web.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,5 +94,31 @@ public class MemberService {
 	public int changeLevel(Member m) {
 		int result = dao.changeLevel(m);
 		return result;
+	}
+
+	public boolean checkedChangeLevel(String num, String level) {
+		StringTokenizer sT1 = new StringTokenizer(num, "/");
+		StringTokenizer sT2 = new StringTokenizer(level, "/");
+		boolean result = true;
+		
+		while(sT1.hasMoreTokens()) {
+			int mNo = Integer.parseInt(sT1.nextToken());
+			int mLevel =  Integer.parseInt(sT2.nextToken());
+			
+			Member mem = new Member();
+			mem.setMemberNo(mNo);;
+			mem.setMemberLevel(mLevel);
+			int changeResult = dao.changeLevel(mem);
+			if(changeResult == 0) {
+				result = false;
+				break;
+			}
+		}
+		return result;
+	}
+
+	public Member findId(Member m) {
+		Member mem = dao.findId(m);
+		return mem;
 	}
 }

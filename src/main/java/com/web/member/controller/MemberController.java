@@ -29,6 +29,13 @@ public class MemberController {
 	public String myPageFrm() {
 			return "member/myPage";
 	}
+	
+	//아이디찾기 이동
+	@RequestMapping(value="/findIdFrm.do")
+	public String findIdFrm() {
+		return "member/findIdFrm";
+	}
+	
 	//어드민페이지
 	@RequestMapping(value="/adminPage.do")
 	public String adminPage(int reqPage, Model model) {
@@ -96,6 +103,27 @@ public class MemberController {
 			return "redirect:/adminPage.do?reqPage=1";
 		}else {
 			return "redirect:/adminPage.do?reqPage=1";
+		}
+	}
+	
+	//운영자페이지에서 체크된 멤버등급 변경
+	@RequestMapping(value="/checkedChangeLevel")
+	public String checkedChangeLevel(String num, String level) {
+		boolean result = service.checkedChangeLevel(num,level);
+		if(result) {
+			return "redirect:/adminPage.do?reqPage=1";
+		}else {
+			return "redirect:/adminPage.do?reqPage=1";
+		}
+	}
+	@ResponseBody
+	@RequestMapping(value="/findId.do")
+	public String findId(Member m,Model model) {
+		Member mem = service.findId(m);
+		if(mem==null) {
+			return "0";
+		}else {
+			return mem.getMemberId();
 		}
 	}
 }

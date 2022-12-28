@@ -13,6 +13,8 @@
     <script src="/resources/summernote/summernote-lite.js"></script>
 	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
+	<!-- sweetalert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>  
 	<header>
       <div class="site-logo">
         <a href="/">Taeyeon`S WORLD</a>
@@ -28,7 +30,7 @@
             <ul class="sub-navi">
               <li><a href="/email.do">EMAIL</a></li>
               <li><a href="/map.do">MAP</a></li>
-              <li><a href="/pay.do">결제모듈</a></li>
+              <li><a href="/pay.do">결제모듈</a></li>   
             </ul>
            </li>
         </ul>
@@ -37,7 +39,7 @@
       <!-- m이 null일때 -->
       <c:choose>
 	      <c:when test="${empty sessionScope.m}">
-	        <button class="btn bc11 modal-open-btn" target="#login-modal">SIGN IN</button>
+	        <button class="btn bc11 modal-open-btn" id="ModalloginBtn" target="#login-modal">SIGN IN</button>
        		<a class="btn bc11" href="/signupFrm.do">SIGN UP</a>
 	      </c:when>
 	      <c:otherwise>
@@ -82,9 +84,13 @@
     		 </div>
 	      </c:when>
       </c:choose>
- 
-    
+ 	<c:if test="${param.login==1 }">
     <script>
+    	$("#login-modal").css("display","flex");
+    </script>
+    </c:if>
+    <script>
+    
     $(".loginBtn").on("click",function(){
     	loginAjax();
     });

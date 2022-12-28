@@ -15,7 +15,7 @@
 		<div class="page-title">관리자 페이지</div>
 		<table class="tbl tbl-hover">
 			<tr class="tr-3">
-				<th>선택</th>
+				<th><input type="checkbox" id="allChkBox"></th>
 				<th>회원번호</th>
 				<th>아이디</th>
 				<th>이름</th>
@@ -102,6 +102,14 @@
 				level.push(memberLevel);
 			});
 			location.href="/checkedChangeLevel.do?num="+num.join("/")+"&level="+level.join("/");
+		});
+		
+		$("#allChkBox").on("click", function() {
+			if ($(this).is(":checked")) {
+				$(".chk").prop("checked", true);
+			} else {
+				$(".chk").prop("checked", false);
+			}
 		});
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>

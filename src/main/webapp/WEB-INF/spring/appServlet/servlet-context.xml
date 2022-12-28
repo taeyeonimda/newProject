@@ -53,6 +53,22 @@
 	<aop:aspectj-autoproxy>
 	</aop:aspectj-autoproxy>
 	
+	<!-- 인터셉터 -->
+	<beans:bean id="LoginInterceptor" class="common.LoginInterceptor" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/myPage.do" /><!-- 로그인 한사람만 갈 수 있는 페이지 -->
+			<mapping path="/adminPage.do" />
+			<beans:ref bean="LoginInterceptor" />
+		</interceptor>
+		 
+		<!--<interceptor>
+			<mapping path="/adminPage.do" />
+			<beans:ref bean="AdminInterceptor" /> 로그인 한사람중 관리자만 볼 수 있는 페이지 
+		</interceptor>-->
+	
+	</interceptors> 
 	
 	<context:component-scan base-package="common" />
 	<context:component-scan base-package="com.web.project" />
